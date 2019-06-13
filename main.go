@@ -18,7 +18,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	"gopkg.in/telegram-bot-api.v4"
+	tgbotapi "gopkg.in/telegram-bot-api.v4"
 	"gopkg.in/yaml.v2"
 
 	"html/template"
@@ -430,6 +430,10 @@ func main() {
 
 	router.GET("/ping/:chatid", GET_Handling)
 	router.POST("/alert/:chatid", POST_Handling)
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(http.StatusOK, "OK")
+		return
+	})
 	router.Run(*listen_addr)
 }
 
